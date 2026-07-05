@@ -1,0 +1,27 @@
+{
+  "operator_id": "operator_001",
+  "name": "Alex Rivera",
+  "interaction_count": 0,
+  "last_updated": null,
+  "current_shift": null,
+  "instruction_style_scores": {
+    "step_by_step": 0.0,
+    "visual": 0.0,
+    "example_based": 0.0,
+    "brief": 0.0
+  },
+  "troubleshooting_scores": {
+    "tries_first": 0.0,
+    "escalates_quickly": 0.0,
+    "mixed": 0.0
+  },
+  "machine_confidence": {
+    "hydraulic_press": 0.0,
+    "cnc_lathe": 0.0,
+    "conveyor_belt": 0.0
+  },
+  "shift_patterns": {
+    "day": {},
+    "night": {}
+  }
+}

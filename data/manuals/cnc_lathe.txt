@@ -1,0 +1,46 @@
+CNC LATHE TL-450 — OPERATION AND FAULT REFERENCE
+
+Overview
+The TL-450 is a 3-axis CNC turning center with bar feeder attachment, used for producing
+turned shafts and bushings. Controller is a Fanuc 0i-TF. Spindle speed range is
+200-4500 RPM. Programs are loaded via USB or network share from the DNC folder.
+
+Startup Procedure
+1. Power on the controller and wait for the axis reference (home) sequence to complete.
+2. Load the program from the DNC directory matching the current job traveler.
+3. Verify tool offsets against the setup sheet before running the first part.
+4. Run the first part in single-block mode and inspect dimensions before continuous run.
+
+Common Alarms
+
+ALM-020: Spindle Overload
+Cause: excessive cutting load, often from a dull insert or incorrect feed rate. Reduce
+feed override and inspect the insert for wear. Replace insert if edge chipping is visible.
+
+ALM-034: Tool Offset Out of Range
+Cause: an operator entered an offset value outside the machine's configured limits,
+usually a typo during setup. Re-check the offset against the setup sheet and re-enter.
+
+ALM-041: Bar Feeder Jam
+Cause: bar stock misaligned in the feed tube or collet not fully closed before feed cycle.
+Retract the bar feeder, inspect the collet, and manually clear any binding stock. If the
+jam recurs after clearing, the feed tube alignment likely needs adjustment by maintenance.
+
+ALM-055: Coolant Flow Fault
+Cause: coolant level low or pump failure. Check tank level first; if adequate, this
+indicates a pump or line blockage issue requiring maintenance attention.
+
+ALM-070: Servo Following Error
+Cause: axis servo could not maintain commanded position, often due to mechanical binding
+or a drive fault. This is not operator-serviceable — stop the program and escalate
+immediately, as continuing to run risks crashing the tool into the part or chuck.
+
+Routine Maintenance Notes
+Daily: check coolant level and concentration, clear chip conveyor, inspect way covers.
+Weekly: check spindle lubrication reservoir, verify tailstock alignment if used.
+
+Escalation Guidance
+ALM-020 and ALM-034 are considered basic operator-correctable faults. ALM-041 is
+correctable on first occurrence but should be escalated if recurring within the same
+shift. ALM-055 and ALM-070 require maintenance escalation as they can involve equipment
+damage risk if operators attempt further troubleshooting.

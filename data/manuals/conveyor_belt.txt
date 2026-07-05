@@ -1,0 +1,47 @@
+CONVEYOR BELT SYSTEM CB-12 — OPERATION AND FAULT REFERENCE
+
+Overview
+CB-12 is the main line conveyor feeding parts from the press cell to the packing station.
+It runs at a fixed 0.4 m/s belt speed with three zone motors and photo-eye sensors at each
+transfer point. Control is via a local panel with status lights, tied into the line PLC.
+
+Startup Procedure
+1. Confirm upstream and downstream stations report ready on the line status board.
+2. Press RESET on the local panel to clear any latched faults from the previous shift.
+3. Press START and observe all three zone motors engage in sequence within 3 seconds.
+4. Confirm parts transfer cleanly across each photo-eye without stalling.
+
+Common Alarms
+
+ALM-201: Photo-Eye Blocked
+Cause: a part has stalled at a transfer point, or the sensor lens is dirty. Clear any
+stalled part by hand (belt stopped) and wipe the sensor lens. This is the most frequent
+fault and is fully operator-correctable.
+
+ALM-208: Zone Motor Overload
+Cause: excessive load on a zone motor, often from part jam upstream of the zone or a
+seized roller. Inspect the zone for jammed material. If rollers feel stiff when turned
+by hand, escalate for bearing inspection.
+
+ALM-215: Belt Tracking Fault
+Cause: belt has drifted off-center, tripping the tracking sensor. Minor drift can be
+corrected by adjusting the tensioner bolts per the marked reference points. Significant
+or repeated drift indicates roller misalignment and should be escalated.
+
+ALM-222: E-Stop / Safety Gate Open
+Cause: a safety gate along the line is open or an e-stop is engaged. Verify all gates are
+closed and latched. If the fault persists with gates closed, this is a safety-circuit
+issue and must be escalated — do not bypass the interlock.
+
+ALM-230: Communication Loss with Line PLC
+Cause: network or PLC fault upstream of the local panel. Not operator-serviceable;
+escalate to controls/maintenance immediately, as this can affect the whole line.
+
+Routine Maintenance Notes
+Daily: wipe photo-eye lenses, visually check belt tracking and tension.
+Weekly: check roller bearings for noise or play, inspect drive chain tension.
+
+Escalation Guidance
+ALM-201 is fully operator-correctable and should not be escalated on its own. ALM-208 and
+ALM-215 are correctable on first occurrence with escalation only if recurring. ALM-222 and
+ALM-230 require immediate escalation regardless of operator confidence level.

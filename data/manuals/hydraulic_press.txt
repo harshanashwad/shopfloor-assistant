@@ -1,0 +1,46 @@
+HYDRAULIC PRESS HP-200 — OPERATION AND FAULT REFERENCE
+
+Overview
+The HP-200 is a 200-ton hydraulic press used for sheet metal forming operations. It is
+controlled via the Siemens HMI panel mounted on the front guarding. Normal operating
+pressure is 180-210 bar. Cycle time under standard load is 8-12 seconds.
+
+Startup Procedure
+1. Confirm the area is clear and light curtains are active (green indicator on HMI).
+2. Turn the main disconnect to ON and wait for the hydraulic pump to reach idle pressure.
+3. Home the ram by pressing HOME on the HMI. Do not attempt manual jog before homing.
+4. Load the die set and verify clamp pressure reads above 150 bar before running cycles.
+
+Common Alarms
+
+ALM-101: Low Hydraulic Pressure
+Cause: reservoir level low, or pump cavitation. Check sight glass on the tank; top up
+with ISO 46 hydraulic oil if below the minimum line. If oil level is normal, check the
+suction filter for clogging.
+
+ALM-114: Ram Position Fault
+Cause: the ram did not reach the commanded position within the timeout window. Usually
+caused by a worn position sensor or an obstruction in the die area. Clear the area, re-home
+the ram, and re-run. If the fault repeats twice, escalate to maintenance — this can
+indicate sensor drift requiring recalibration.
+
+ALM-130: Overpressure Trip
+Cause: pressure exceeded 230 bar, safety relief triggered. Do not reset without inspecting
+the die for misalignment or double-blank feeding. This is a hard stop and should not be
+bypassed by operators.
+
+ALM-142: E-Stop Circuit Open
+Cause: an e-stop button is engaged or the circuit has a wiring fault. Check all e-stops
+around the cell are released. If all are released and the fault persists, this requires
+electrical maintenance — do not attempt to jumper the circuit.
+
+Routine Maintenance Notes
+Daily: check oil level, inspect hoses for wear, verify light curtain function.
+Weekly: clean suction filter, check die clamp torque.
+Any hose showing bulging or weeping oil must be reported immediately and the press
+tagged out until replaced.
+
+Escalation Guidance
+Operators are expected to handle ALM-101 and single occurrences of ALM-114 independently.
+ALM-130 and ALM-142 should always be escalated to maintenance regardless of operator
+experience level, as they involve safety-critical subsystems.
