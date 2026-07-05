@@ -1,2 +1,12 @@
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-chroma
+langchain-text-splitters
+chromadb
 pydantic
 python-dotenv
+openai
+tiktoken
+pypdf
