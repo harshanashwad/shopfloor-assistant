@@ -1,17 +1,65 @@
-from __future__ import annotations
-
 from profile import OperatorProfile
 
-PERSONALIZATION_THRESHOLD = 5
-
+PERSONALIZATION_THRESHOLD = 5  # configurable, 20-30 in production
 
 def build_system_prompt(profile: OperatorProfile) -> str:
-    pass
+    base = """You are an AI assistant for shopfloor operators in a manufacturing facility.
+    You help operators troubleshoot machine issues, retrieve relevant documentation, and escalate problems when needed.
+    Always prioritize safety. If an issue poses a safety risk, recommend stopping the machine immediately."""
 
+    if profile.interaction_count >= PERSONALIZATION_THRESHOLD:
+        base += _personalized_prompt(profile)
+    else:
+        base += f"\n\nThis operator has {profile.interaction_count} recorded interactions. Respond neutrally until more behavioral data is available."
 
-def _neutral_prompt() -> str:
-    pass
+    return base
 
 
 def _personalized_prompt(profile: OperatorProfile) -> str:
-    pass
+    sections = []
+
+    instruction_style_prompts = {
+        "step_by_step": "Break down all guidance into numbered steps.",
+        "visual": "Use structured formatting, tables, and clear visual hierarchy in responses.",
+        "example_based": "Always include a practical example when explaining procedures.",
+        "brief": "Keep responses concise. Avoid lengthy explanations unless asked."
+    }
+
+    troubleshooting_prompts = {
+        "escalates_quickly": "This operator tends to escalate quickly. Proactively offer to create a ticket when issues seem complex.",
+        "tries_first": "This operator tries to resolve issues independently. Acknowledge their attempts and build on what they've tried.",
+        "mixed": "This operator shows mixed troubleshooting behavior. Follow their lead on whether to escalate or resolve independently."
+    }
+
+    machine_confidence_prompts = {
+        "weak": "Operator has low confidence with: {machines}. Proactively retrieve documentation for these machines without being asked.",
+        "strong": "Operator is experienced with: {machines}. Skip basic explanations for these."
+    }
+
+    # Instruction style
+    instruction_style_preference_scores = profile.instruction_style_preference_scores
+    preferred_instruction_style = max(instruction_style_preference_scores.keys(), key=lambda style: instruction_style_preference_scores[style]) # dominant style is the style of instructions prefererred by the operator
+
+    if profile.instruction_style_preference_scores[preferred_instruction_style] > 0.3:
+        sections.append(f"INSTRUCTION STYLE: {instruction_style_prompts[preferred_instruction_style]}")
+
+    # Troubleshooting behavior
+    troubleshooting_scores = profile.troubleshooting_scores
+    dominant_troubleshooting_behavior = max(troubleshooting_scores.keys(), key = lambda troubleshooting_pattern: troubleshooting_scores[troubleshooting_pattern])
+
+    if profile.troubleshooting_scores[dominant_troubleshooting_behavior] > 0.3:
+        sections.append(f"TROUBLESHOOTING: {troubleshooting_prompts[dominant_troubleshooting_behavior]}")
+    # Machine confidence
+    weak_machines = [m for m, score in profile.machine_confidence.items() if score < 0.3]
+    strong_machines = [m for m, score in profile.machine_confidence.items() if score >= 0.7]
+
+    # Explain which machines the operator is cmofortable with and which ones he needs guidance and relevant documentation for
+    if weak_machines:
+        sections.append(f"MACHINE CONFIDENCE: {machine_confidence_prompts['weak'].format(machines=', '.join(weak_machines))}")
+    if strong_machines:
+        sections.append(f"MACHINE CONFIDENCE: {machine_confidence_prompts['strong'].format(machines=', '.join(strong_machines))}")
+
+    if not sections:
+        return ""
+
+    return "\n\nOPERATOR PROFILE:\n\n" + "\n".join(sections)
