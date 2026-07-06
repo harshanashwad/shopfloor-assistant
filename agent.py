@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from profile import OperatorProfile
 from prompt_builder import build_system_prompt
 
