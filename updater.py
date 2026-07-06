@@ -56,6 +56,7 @@ def extract_signals(chat_transcript: list[HumanMessage | AIMessage], recent_tick
     - High scores (7-10): Operator used technical terminology correctly, diagnosed issues accurately, needed minimal guidance
     - Mid scores (4-6): Operator had partial understanding, needed some clarification
     - Low scores (0-3): Operator was confused, used vague descriptions, needed step-by-step guidance throughout
+    - Use the machine name as the key (e.g. "hydraulic press", "cnc lathe", "conveyor belt") not alarm codes.
 
     IMPORTANT RULES:
     - Score only what is explicitly observable in the transcript. Do not infer or assume.
@@ -82,7 +83,7 @@ def extract_signals(chat_transcript: list[HumanMessage | AIMessage], recent_tick
     return response
 
 
-def aggregate(profile: OperatorProfile, signals: SessionSignals) -> OperatorProfile:
+def aggregate(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], escalation_count: int, signals: SessionSignals) -> OperatorProfile:
     weight_new = 1 / (profile.interaction_count + 1)
     weight_existing = 1 - weight_new
 
@@ -104,13 +105,27 @@ def aggregate(profile: OperatorProfile, signals: SessionSignals) -> OperatorProf
             existing * weight_existing + (score / 10) * weight_new, 3
         )
 
+    # Shift pattern updates
+    human_messages = [m for m in chat_transcript if isinstance(m, HumanMessage)]
+
+    shift = profile.current_shift
+    current_avg_questions = profile.shift_patterns[shift]["avg_questions"]
+    current_avg_escalations = profile.shift_patterns[shift]["avg_escalations"]
+
+    # Basically maintaining a running average of questions and escalations raised every interaction grouped by shift type
+    profile.shift_patterns[shift]["avg_questions"] = round(
+        current_avg_questions * weight_existing + len(human_messages) * weight_new, 2
+    )
+    profile.shift_patterns[shift]["avg_escalations"] = round(
+        current_avg_escalations * weight_existing + escalation_count * weight_new, 2
+    )
     profile.interaction_count += 1
     profile.last_updated = datetime.now()
 
     return profile
 
-def update_profile(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], recent_tickets: list[dict]) -> OperatorProfile:
+def update_profile(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], escalation_count: int, recent_tickets: list[dict]) -> OperatorProfile:
     signals = extract_signals(chat_transcript, recent_tickets)
-    updated = aggregate(profile, signals)
+    updated = aggregate(profile, chat_transcript, escalation_count, signals)
     save_profile(updated)
     return updated

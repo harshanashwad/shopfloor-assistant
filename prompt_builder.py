@@ -1,11 +1,14 @@
 from profile import OperatorProfile
 
 PERSONALIZATION_THRESHOLD = 5  # configurable, 20-30 in production
+INSTRUCTION_STYLE_THRESHOLD = 0.3 # When the operator's preference for an instruction style is above this, we will include it in the system prompt
 
 def build_system_prompt(profile: OperatorProfile) -> str:
-    base = """You are an AI assistant for shopfloor operators in a manufacturing facility.
+    base = f"""You are an AI assistant for shopfloor operators in a manufacturing facility.
     You help operators troubleshoot machine issues, retrieve relevant documentation, and escalate problems when needed.
-    Always prioritize safety. If an issue poses a safety risk, recommend stopping the machine immediately."""
+    Always prioritize safety. If an issue poses a safety risk, recommend stopping the machine immediately.
+    
+    Current operator: {profile.name} (ID: {profile.operator_id})"""
 
     if profile.interaction_count >= PERSONALIZATION_THRESHOLD:
         base += _personalized_prompt(profile)
@@ -38,10 +41,12 @@ def _personalized_prompt(profile: OperatorProfile) -> str:
 
     # Instruction style
     instruction_style_preference_scores = profile.instruction_style_preference_scores
-    preferred_instruction_style = max(instruction_style_preference_scores.keys(), key=lambda style: instruction_style_preference_scores[style]) # dominant style is the style of instructions prefererred by the operator
+    preferred_styles = [style for style, score in instruction_style_preference_scores.items() if score > INSTRUCTION_STYLE_THRESHOLD]
 
-    if profile.instruction_style_preference_scores[preferred_instruction_style] > 0.3:
-        sections.append(f"INSTRUCTION STYLE: {instruction_style_prompts[preferred_instruction_style]}")
+    if preferred_styles:
+        style_names_str = ", ".join(preferred_styles)
+        style_rules_str = "\n".join([f"- {instruction_style_prompts[s]}" for s in preferred_styles])
+        sections.append(f"INSTRUCTION STYLE: This operator has shown strong preference for: {style_names_str}.\n{style_rules_str}")
 
     # Troubleshooting behavior
     troubleshooting_scores = profile.troubleshooting_scores
@@ -61,5 +66,5 @@ def _personalized_prompt(profile: OperatorProfile) -> str:
 
     if not sections:
         return ""
-
-    return "\n\nOPERATOR PROFILE:\n\n" + "\n".join(sections)
+    header = f"The following behavioral profile has been learned for this operator from {profile.interaction_count} interactions. Apply these rules consistently:"
+    return f"\n\nOPERATOR PROFILE:\n {header}\n\n" + "\n".join(sections)

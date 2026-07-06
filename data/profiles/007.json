@@ -1,0 +1,35 @@
+{
+  "operator_id": "007",
+  "name": "Harshan Ashwad",
+  "instruction_style_preference_scores": {
+    "step_by_step": 0.633,
+    "visual": 0.0,
+    "example_based": 0.0,
+    "brief": 0.317
+  },
+  "troubleshooting_scores": {
+    "tries_first": 0.4,
+    "escalates_quickly": 0.6,
+    "mixed": 0.0
+  },
+  "machine_confidence": {
+    "ALM-208": 0.4,
+    "hydraulic press": 0.233,
+    "CNC lathe": 0.2,
+    "ALM-114": 0.125,
+    "ALM-215": 0.14
+  },
+  "current_shift": "day",
+  "shift_patterns": {
+    "day": {
+      "avg_questions": 0.0,
+      "avg_escalations": 0.0
+    },
+    "night": {
+      "avg_questions": 0.0,
+      "avg_escalations": 0.0
+    }
+  },
+  "last_updated": "2026-07-06 20:41:40.467368",
+  "interaction_count": 6
+}

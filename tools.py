@@ -1,3 +1,4 @@
+from typing import Annotated
 import json
 from pathlib import Path
 
@@ -51,7 +52,10 @@ def retrieve_manual_context(query: str) -> str:
     return relevant_docs
 
 @tool
-def create_escalation_ticket(operator_id: str, issue: str) -> str:
+def create_escalation_ticket(
+    operator_id: Annotated[str, "The operator's ID. Use the operator ID mentioned in the system prompt."],
+    issue: Annotated[str, "A clear description of the issue that needs escalation."]
+) -> str:
     """Creates an escalation ticket for an operator issue that requires supervisor or engineer attention.
     Use this when the operator explicitly requests escalation or when the issue is beyond their ability to resolve independently."""
     

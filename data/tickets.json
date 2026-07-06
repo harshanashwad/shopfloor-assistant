@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "operator_id": "0",
+    "issue": "Conveyor belt ALM-208 keeps triggering despite clearing jams and resetting. Suspected issue with rollers.",
+    "timestamp": "2026-07-06T19:36:50.269944"
+  },
+  {
+    "operator_id": "1",
+    "issue": "Hydraulic press showing ALM-101 error code. Checked oil level and it is fine, but still experiencing low hydraulic pressure. Need further assistance.",
+    "timestamp": "2026-07-06T19:41:50.856674"
+  },
+  {
+    "operator_id": "{profile.operator_id}",
+    "issue": "Hydraulic press ALM-114 ram position fault keeps recurring despite re-homing attempts. Issue needs maintenance attention.",
+    "timestamp": "2026-07-06T19:54:22.714231"
+  },
+  {
+    "operator_id": "007",
+    "issue": "Hydraulic press is making an unusual noise during the ram cycle, despite normal pressure readings. Unable to identify the cause.",
+    "timestamp": "2026-07-06T20:40:44.464361"
+  }
+]
