@@ -4,7 +4,7 @@ from pathlib import Path
 
 from langchain_core.tools import tool
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import TextLoader, DirectoryLoader
+from langchain_community.document_loaders import TextLoader, DirectoryLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.runnables import RunnableLambda
 from langchain_openai import OpenAIEmbeddings
@@ -45,7 +45,9 @@ def retrieve_manual_context(query: str) -> str:
     or needs documentation for a specific machine or process."""
     
     # RAG chain to retrieve relevant machine documentation
-    retriever = _vector_store.as_retriever()
+    retriever = _vector_store.as_retriever(
+        search_kwargs={"k": 3}
+    )
     chain = retriever | RunnableLambda(format_docs) 
     relevant_docs = chain.invoke(query)
 

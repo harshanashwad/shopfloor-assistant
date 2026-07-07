@@ -1,35 +1,35 @@
 {
   "operator_id": "007",
-  "name": "Harshan Ashwad",
+  "name": "Harshan",
   "instruction_style_preference_scores": {
-    "step_by_step": 0.633,
-    "visual": 0.0,
-    "example_based": 0.0,
-    "brief": 0.317
+    "step_by_step": 0.6,
+    "visual": 0.42,
+    "example_based": 0.62,
+    "brief": 0.23
   },
   "troubleshooting_scores": {
-    "tries_first": 0.4,
-    "escalates_quickly": 0.6,
+    "tries_first": 0.249,
+    "escalates_quickly": 0.37,
     "mixed": 0.0
   },
   "machine_confidence": {
-    "ALM-208": 0.4,
-    "hydraulic press": 0.233,
+    "hydraulic press": 0.6,
+    "conveyor belt": 0.22,
     "CNC lathe": 0.2,
-    "ALM-114": 0.125,
-    "ALM-215": 0.14
+    "conveyor ALM-215": 0.12,
+    "cnc lathe": 0.24
   },
   "current_shift": "day",
   "shift_patterns": {
     "day": {
-      "avg_questions": 0.0,
-      "avg_escalations": 0.0
+      "avg_questions": 2.8,
+      "avg_escalations": 0.4
     },
     "night": {
       "avg_questions": 0.0,
       "avg_escalations": 0.0
     }
   },
-  "last_updated": "2026-07-06 20:41:40.467368",
-  "interaction_count": 6
+  "last_updated": "2026-07-07 14:54:30.926814",
+  "interaction_count": 10
 }

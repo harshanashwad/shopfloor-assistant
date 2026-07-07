@@ -1,0 +1,27 @@
+{
+  "operator_id": "operator_new",
+  "name": "Ravi Kumar",
+  "instruction_style_preference_scores": {
+    "step_by_step": 0.85,
+    "visual": 0.0,
+    "example_based": 0.0,
+    "brief": 0.05
+  },
+  "troubleshooting_scores": {
+    "tries_first": 0.1,
+    "escalates_quickly": 0.8,
+    "mixed": 0.1
+  },
+  "machine_confidence": {
+    "hydraulic press": 0.15,
+    "cnc lathe": 0.1,
+    "conveyor belt": 0.2
+  },
+  "current_shift": "day",
+  "shift_patterns": {
+    "day": {"avg_questions": 8.0, "avg_escalations": 2.5},
+    "night": {"avg_questions": 0.0, "avg_escalations": 0.0}
+  },
+  "last_updated": "2026-07-06T00:00:00",
+  "interaction_count": 10
+}
