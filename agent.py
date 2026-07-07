@@ -43,6 +43,6 @@ def run_session(profile: OperatorProfile) -> OperatorProfile:
 
 
     # Update profile at end of session
-    updated_profile = update_profile(profile, chat_history, escalation_count, recent_tickets=[])
+    updated_profile = update_profile(profile, chat_history, escalation_count)
     print(f"\nSession ended. Profile updated. Interactions: {updated_profile.interaction_count}\n")
     return updated_profile

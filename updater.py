@@ -34,9 +34,7 @@ class SessionSignals(BaseModel):
 
 
 
-def extract_signals(chat_transcript: list[HumanMessage | AIMessage], recent_tickets: list[dict]) -> SessionSignals:
-    # Ignoring the recent tickets for now
-
+def extract_signals(chat_transcript: list[HumanMessage | AIMessage]) -> SessionSignals:
     system_prompt = """You are a behavioral analyst evaluating a conversation between a shopfloor operator and an AI assistant.
 
     Your task is to score the operator's behavioral patterns based solely on signals observed in this conversation transcript.
@@ -124,7 +122,7 @@ def aggregate(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIM
 
     return profile
 
-def update_profile(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], escalation_count: int, recent_tickets: list[dict]) -> OperatorProfile:
+def update_profile(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], escalation_count: int) -> OperatorProfile:
     signals = extract_signals(chat_transcript, recent_tickets)
     updated = aggregate(profile, chat_transcript, escalation_count, signals)
     save_profile(updated)
