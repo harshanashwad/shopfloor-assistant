@@ -107,7 +107,7 @@ Five sessions is intentionally low for demonstration purposes — in a real depl
 20-30 sessions would produce a more reliable and nuanced behavioural profile.
 
 To see personalisation in action without running multiple sessions, I have created two pre-built profiles 
-are included that simulate an experienced operator and a new operator after 15 sessions of 
+that simulate an experienced operator and a new operator after 15 sessions of 
 accumulated data. Run the same query through both and observe the contrast in response 
 structure, depth, and proactive behaviour.
 
