@@ -17,7 +17,7 @@ def run_session(profile: OperatorProfile) -> OperatorProfile:
     system_prompt = build_system_prompt(profile)
 
     agent = create_agent(
-        model=ChatOpenAI(model="gpt-4o-mini", temperature=0.3) ,
+        model=ChatOpenAI(model="gpt-4o-mini", temperature=0.3),
         tools=[retrieve_manual_context, create_escalation_ticket, log_profile_correction],
         system_prompt=system_prompt
     )

@@ -123,7 +123,7 @@ def aggregate(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIM
     return profile
 
 def update_profile(profile: OperatorProfile, chat_transcript: list[HumanMessage | AIMessage], escalation_count: int) -> OperatorProfile:
-    signals = extract_signals(chat_transcript, recent_tickets)
+    signals = extract_signals(chat_transcript)
     updated = aggregate(profile, chat_transcript, escalation_count, signals)
     save_profile(updated)
     return updated
