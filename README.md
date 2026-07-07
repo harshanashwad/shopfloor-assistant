@@ -88,6 +88,21 @@ count grows.
 After this threshold, the system prompt is dynamically built from the operator's profile —
 adjusting instruction style, troubleshooting guidance, and proactive tool use.
 
+### Sample Queries to Try
+
+If you are unsure what to ask, use these queries to get started:
+
+**Query 1 — Troubleshooting:**
+> The hydraulic press is showing ALM-101 and the oil level looks fine, what should I check?
+
+**Query 2 — Procedure:**
+> Walk me through the startup procedure for the CNC lathe.
+
+To verify the assistant is grounding responses in the actual manuals rather than general knowledge,
+open `data/manuals/hydraulic_press.txt` (or any manual) and ask a specific question about its
+content — for example, a specific alarm code or a step in the startup procedure. The assistant's
+response should closely reflect what is documented in that file.
+
 ---
 
 ## Key Data Locations
