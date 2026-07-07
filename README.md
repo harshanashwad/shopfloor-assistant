@@ -102,8 +102,6 @@ override values if needed.
 
 ## Demo Tip
 
-## Demo Tip
-
 Meaningful personalisation requires enough interaction data for the profile to stabilise. 
 Five sessions is intentionally low for demonstration purposes — in a real deployment, 
 20-30 sessions would produce a more reliable and nuanced behavioural profile.
