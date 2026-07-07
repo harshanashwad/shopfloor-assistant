@@ -119,12 +119,14 @@ structure, depth, and proactive behaviour.
 ```bash
 python main.py
 # Enter operator ID: operator_expert
+# Enter operator name: Alex Chen
 ```
 
 **Step 2** — New operator (step-by-step, escalates-quickly, low machine confidence):**
 ```bash
 python main.py
 # Enter operator ID: operator_new
+# Enter operator name: Harshan Ashwad
 ```
 
 **What to observe:**
@@ -132,4 +134,3 @@ python main.py
 - Harshan Ashwad (new operator): numbered steps, visual breakdown, practical example, proactively offer to raise escalation
 
 Both profiles are included in `data/profiles/`.
-```
