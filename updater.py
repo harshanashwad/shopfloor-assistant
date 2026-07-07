@@ -61,7 +61,7 @@ def extract_signals(chat_transcript: list[HumanMessage | AIMessage], recent_tick
     IMPORTANT RULES:
     - Score only what is explicitly observable in the transcript. Do not infer or assume.
     - If a dimension has no observable signal, score it 0.
-    - Explicit operator corrections to their own profile carry higher weight than inferred signals.
+    - Explicit preferences mentioned by the operator / corrections to their own profile carry higher weight than inferred signals.
     - Do not include machines not discussed in this session.
 
     {format_instructions}"""

@@ -2,33 +2,26 @@
   "operator_id": "operator_expert",
   "name": "Alex Chen",
   "instruction_style_preference_scores": {
-    "step_by_step": 0.083,
-    "visual": 0.0,
-    "example_based": 0.0,
-    "brief": 0.858
+    "step_by_step": 0.05,
+    "visual": 0.15,
+    "example_based": 0.1,
+    "brief": 0.88
   },
   "troubleshooting_scores": {
-    "tries_first": 0.766,
-    "escalates_quickly": 0.05,
-    "mixed": 0.041
+    "tries_first": 0.91,
+    "escalates_quickly": 0.04,
+    "mixed": 0.05
   },
   "machine_confidence": {
-    "hydraulic press": 0.864,
-    "cnc lathe": 0.85,
-    "conveyor belt": 0.8,
-    "CNC lathe": 0.042
+    "hydraulic press": 0.92,
+    "cnc lathe": 0.88,
+    "conveyor belt": 0.85
   },
   "current_shift": "day",
   "shift_patterns": {
-    "day": {
-      "avg_questions": 2.67,
-      "avg_escalations": 0.08
-    },
-    "night": {
-      "avg_questions": 0.0,
-      "avg_escalations": 0.0
-    }
+    "day": {"avg_questions": 2.0, "avg_escalations": 0.1},
+    "night": {"avg_questions": 0.0, "avg_escalations": 0.0}
   },
-  "last_updated": "2026-07-07 14:44:22.199746",
-  "interaction_count": 12
+  "last_updated": "2026-07-06T00:00:00",
+  "interaction_count": 15
 }

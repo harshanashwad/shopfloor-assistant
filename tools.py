@@ -84,4 +84,4 @@ def create_escalation_ticket(
 def log_profile_correction(dimension: str, correction: str) -> str:
     """Use this when the operator explicitly corrects an assumption about their preferences or behavior.
     For example: 'I actually prefer visual instructions' or 'I don't escalate quickly, I try to fix things first'."""
-    return f"Understood. I've noted that you prefer {correction} for {dimension}. I'll factor this into how I work with you going forward."
+    return f"[EXPLICIT PROFILE CORRECTION] Operator has directly stated a preference correction — dimension: {dimension}, correction: {correction}. This signal carries higher weight than inferred behavioral signals."

@@ -1,27 +1,27 @@
 {
   "operator_id": "operator_new",
-  "name": "Ravi Kumar",
+  "name": "Harshan Ashwad",
   "instruction_style_preference_scores": {
-    "step_by_step": 0.85,
-    "visual": 0.0,
-    "example_based": 0.0,
-    "brief": 0.05
+    "step_by_step": 0.86,
+    "visual": 0.62,
+    "example_based": 0.58,
+    "brief": 0.04
   },
   "troubleshooting_scores": {
-    "tries_first": 0.1,
-    "escalates_quickly": 0.8,
-    "mixed": 0.1
+    "tries_first": 0.06,
+    "escalates_quickly": 0.89,
+    "mixed": 0.05
   },
   "machine_confidence": {
-    "hydraulic press": 0.15,
+    "hydraulic press": 0.08,
     "cnc lathe": 0.1,
-    "conveyor belt": 0.2
+    "conveyor belt": 0.12
   },
   "current_shift": "day",
   "shift_patterns": {
-    "day": {"avg_questions": 8.0, "avg_escalations": 2.5},
+    "day": {"avg_questions": 9.0, "avg_escalations": 3.2},
     "night": {"avg_questions": 0.0, "avg_escalations": 0.0}
   },
   "last_updated": "2026-07-06T00:00:00",
-  "interaction_count": 10
+  "interaction_count": 15
 }
