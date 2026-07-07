@@ -38,6 +38,9 @@ pip install -r requirements.txt
 **2. Add API key**
 
 Create a `.env` file in the project root:
+This project uses the OpenAI API. You will need your own API key. 
+GPT-4o-mini is one of the most cost-efficient models available — running the full 
+demo including multiple sessions and the contrast query costs a few cents at most.
 ```
 OPENAI_API_KEY=your_key_here
 ```
